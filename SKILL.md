@@ -78,18 +78,18 @@ Ask clarifying questions:
 
 ```
 Simple task (add resource to existing code):
-  → SKILL.md only (~3k words)
+  → SKILL.md only (~2k words)
 
 Medium task (create new module/component):
-  → SKILL.md + naming-conventions.md + style-guide.md (~14k words)
+  → SKILL.md + naming-conventions.md + style-guide.md (~6.3k words)
 
 Complex task (new project with security):
-  → SKILL.md + style-guide + naming + security-standards (~24k words)
+  → SKILL.md + style-guide + naming + security-standards (~8.4k words)
 
 Validation/review:
-  → Add anti-patterns.md to current context (~30k words)
+  → Add anti-patterns.md to current context (~12k words)
 
-NEVER load all references upfront (~44k words) ❌
+NEVER load all references upfront (~15k words) ❌
 ```
 
 ### Step 3: Generate Code
@@ -243,11 +243,11 @@ Need to extract common attributes?
 **Context needs**: Naming, basic security
 
 **Load**:
-- SKILL.md (3k words) - workflow
-- naming-conventions.md (3k words) - bucket naming rules
-- security-standards.md (10k words) - encryption requirements
+- SKILL.md (2k words) - workflow
+- naming-conventions.md (2.2k words) - bucket naming rules
+- security-standards.md (2.3k words) - encryption requirements
 
-**Total**: ~16k words
+**Total**: ~6.5k words
 **Result**: Efficient, loaded only what's needed for naming + basic security
 
 ---
@@ -257,9 +257,9 @@ Need to extract common attributes?
 **Context needs**: Match existing patterns
 
 **Load**:
-- SKILL.md (3k words) - workflow
+- SKILL.md (2k words) - workflow
 
-**Total**: ~3k words
+**Total**: ~2k words
 **Result**: Match existing code patterns, minimal loading
 
 ---
@@ -269,12 +269,12 @@ Need to extract common attributes?
 **Context needs**: Organization, naming, security
 
 **Load**:
-- SKILL.md (3k words)
-- style-guide.md (8k words) - organization patterns
-- naming-conventions.md (3k words) - resource naming
-- security-standards.md (10k words) - network security rules
+- SKILL.md (2k words)
+- style-guide.md (2.1k words) - organization patterns
+- naming-conventions.md (2.2k words) - resource naming
+- security-standards.md (2.3k words) - network security rules
 
-**Total**: ~24k words
+**Total**: ~8.6k words
 **Result**: Comprehensive but targeted, no wasted context
 
 ---
@@ -284,22 +284,22 @@ Need to extract common attributes?
 **Context needs**: Everything except anti-patterns (save for validation)
 
 **Load**:
-- SKILL.md (3k words)
-- style-guide.md (8k words)
-- terraform-patterns.md (12k words)
-- naming-conventions.md (3k words)
-- security-standards.md (10k words)
+- SKILL.md (2k words)
+- style-guide.md (2.1k words)
+- terraform-patterns.md (2.7k words)
+- naming-conventions.md (2.2k words)
+- security-standards.md (2.3k words)
 
-**Total**: ~36k words
-**Validation pass**: Add anti-patterns.md (6k) → 42k total
+**Total**: ~11.3k words
+**Validation pass**: Add anti-patterns.md (3.6k) → ~15k total
 
 **Result**: All references relevant, loaded as needed through workflow
 
 ---
 
 ### ❌ WRONG Approach: "Create S3 bucket" → Load everything
-**Loads**: All references (44k words)
-**Problem**: 28k words wasted on irrelevant patterns, anti-patterns, complex examples
+**Loads**: All references (15k words)
+**Problem**: 9k words wasted on irrelevant patterns, anti-patterns, complex examples
 **Impact**: Less context for conversation, slower processing
 
 ---
