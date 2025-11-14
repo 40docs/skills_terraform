@@ -1,0 +1,128 @@
+#####################################################################
+# {{PROJECT_NAME}} - Variable Definitions
+# Cloud Provider: {{CLOUD_PROVIDER_UPPER}}
+#####################################################################
+
+#####################################################################
+# Required Variables
+#####################################################################
+
+variable "deployment_prefix" {
+  description = <<-EOT
+    Naming prefix for all deployed resources (3-10 characters).
+
+    Used to create unique resource names across the deployment.
+    Must be lowercase alphanumeric only.
+
+    Examples: "myapp", "project1", "demo"
+
+    Impact: Changing this will recreate all resources.
+  EOT
+  type        = string
+
+  validation {
+    condition     = can(regex("^[a-z0-9]{3,10}$", var.deployment_prefix))
+    error_message = "deployment_prefix must be 3-10 lowercase alphanumeric characters"
+  }
+}
+
+variable "location" {
+  description = <<-EOT
+    Cloud region for resource deployment.
+
+    Choose a region close to your users for best performance.
+    Different regions have different service availability.
+
+    {{CLOUD_PROVIDER_UPPER}} Regions:
+    - Azure: canadacentral, eastus, westus2, westeurope
+    - AWS: us-east-1, us-west-2, eu-west-1
+    - GCP: us-central1, europe-west1, asia-southeast1
+  EOT
+  type        = string
+}
+
+variable "environment" {
+  description = <<-EOT
+    Environment name for the deployment.
+
+    Used for:
+    - Resource tagging
+    - Configuration selection (dev uses smaller instances)
+    - Naming conventions
+
+    Must be one of: dev, staging, prod
+  EOT
+  type        = string
+
+  validation {
+    condition     = contains(["dev", "staging", "prod"], var.environment)
+    error_message = "environment must be one of: dev, staging, prod"
+  }
+}
+
+#####################################################################
+# Optional Configuration Variables
+#####################################################################
+
+variable "tags" {
+  description = <<-EOT
+    Tags to apply to all resources.
+
+    Recommended tags:
+    - cost_center: For cost allocation
+    - owner: Team or individual responsible
+    - project: Project or application name
+    - criticality: low | medium | high | critical
+  EOT
+  type        = map(string)
+  default     = {}
+}
+
+#####################################################################
+# Network Configuration (Example)
+#####################################################################
+
+# TODO: Add network-specific variables
+# Example:
+# variable "vnet_address_space" {
+#   description = "Virtual network address space in CIDR notation"
+#   type        = string
+#   default     = "10.0.0.0/16"
+#
+#   validation {
+#     condition     = can(cidrhost(var.vnet_address_space, 0))
+#     error_message = "vnet_address_space must be a valid CIDR block"
+#   }
+# }
+
+#####################################################################
+# Compute Configuration (Example)
+#####################################################################
+
+# TODO: Add compute-specific variables
+# Example:
+# variable "instance_type" {
+#   description = "VM/Instance size for compute resources"
+#   type        = string
+#   default     = "Standard_F4s"  # Azure
+#   # default   = "t3.medium"     # AWS
+#   # default   = "e2-medium"     # GCP
+# }
+
+#####################################################################
+# Deployment Control Flags (Example)
+#####################################################################
+
+# TODO: Add deployment control flags
+# Example:
+# variable "enable_monitoring" {
+#   description = "Deploy monitoring and logging infrastructure"
+#   type        = bool
+#   default     = true
+# }
+#
+# variable "enable_autoscaling" {
+#   description = "Enable auto-scaling for compute resources"
+#   type        = bool
+#   default     = false
+# }

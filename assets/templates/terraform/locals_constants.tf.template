@@ -1,0 +1,152 @@
+#####################################################################
+# {{PROJECT_NAME}} - Constants and Magic Numbers
+# Cloud Provider: {{CLOUD_PROVIDER_UPPER}}
+#####################################################################
+
+# This file contains all constants, magic numbers, and cloud-specific values
+# that should not be hardcoded in resource definitions.
+#
+# Benefits:
+# - Single source of truth for constants
+# - Easy to update across entire codebase
+# - Self-documenting with clear variable names
+# - No "magic numbers" scattered in code
+
+locals {
+  ###########################################################################
+  # Cloud Provider Constants
+  ###########################################################################
+
+  # Azure-specific constants
+  azure_wire_server_ip = "168.63.129.16"  # Azure metadata service for health probes
+
+  # Availability Zones
+  availability_zones = ["1", "2", "3"]
+
+  # Storage SKUs
+  storage_sku = {
+    standard = "Standard_LRS"   # Locally redundant storage
+    premium  = "Premium_LRS"    # Premium locally redundant
+    geo      = "Standard_GRS"   # Geo-redundant storage
+    zone     = "Standard_ZRS"   # Zone-redundant storage
+  }
+
+  ###########################################################################
+  # Network Constants
+  ###########################################################################
+
+  # Standard Ports
+  port_ssh          = 22
+  port_http         = 80
+  port_https        = 443
+  port_mysql        = 3306
+  port_postgresql   = 5432
+  port_redis        = 6379
+  port_mongodb      = 27017
+
+  # Health Check Ports (custom application ports)
+  # health_probe_port_web = 8080
+  # health_probe_port_api = 8081
+
+  ###########################################################################
+  # Compute Constants
+  ###########################################################################
+
+  # Instance Types by Environment
+  instance_types = {
+    dev = {
+      web = "Standard_B2s"   # 2 vCPU, 4 GB RAM
+      app = "Standard_B4ms"  # 4 vCPU, 16 GB RAM
+      db  = "Standard_D2s_v3" # 2 vCPU, 8 GB RAM
+    }
+    staging = {
+      web = "Standard_F4s"   # 4 vCPU, 8 GB RAM
+      app = "Standard_F8s"   # 8 vCPU, 16 GB RAM
+      db  = "Standard_D4s_v3" # 4 vCPU, 16 GB RAM
+    }
+    prod = {
+      web = "Standard_F8s"    # 8 vCPU, 16 GB RAM
+      app = "Standard_F16s"   # 16 vCPU, 32 GB RAM
+      db  = "Standard_D8s_v3" # 8 vCPU, 32 GB RAM
+    }
+  }
+
+  ###########################################################################
+  # Marketplace Image Identifiers
+  ###########################################################################
+
+  # Azure Marketplace Images
+  # marketplace_images = {
+  #   ubuntu_22_04 = {
+  #     publisher = "Canonical"
+  #     offer     = "0001-com-ubuntu-server-jammy"
+  #     sku       = "22_04-lts-gen2"
+  #     version   = "latest"
+  #   }
+  # }
+
+  ###########################################################################
+  # Timeout and Retry Constants
+  ###########################################################################
+
+  # Health Check Settings
+  health_check_interval_seconds = 5
+  health_check_timeout_seconds  = 2
+  health_check_threshold        = 2  # Consecutive failures before unhealthy
+
+  # Backup Retention
+  backup_retention_days = {
+    dev     = 7
+    staging = 14
+    prod    = 30
+  }
+
+  ###########################################################################
+  # Monitoring and Alerting Thresholds
+  ###########################################################################
+
+  # CPU Utilization Thresholds (percentage)
+  cpu_threshold_warning  = 70
+  cpu_threshold_critical = 85
+
+  # Memory Utilization Thresholds (percentage)
+  memory_threshold_warning  = 75
+  memory_threshold_critical = 90
+
+  # Disk Utilization Thresholds (percentage)
+  disk_threshold_warning  = 80
+  disk_threshold_critical = 90
+
+  ###########################################################################
+  # Auto-Scaling Constants
+  ###########################################################################
+
+  # Scale Up Rules
+  scale_up_cpu_threshold         = 75  # CPU percentage
+  scale_up_duration_minutes      = 5   # Sustained for X minutes
+  scale_up_instance_increase     = 2   # Add X instances
+
+  # Scale Down Rules
+  scale_down_cpu_threshold       = 25  # CPU percentage
+  scale_down_duration_minutes    = 10  # Sustained for X minutes
+  scale_down_instance_decrease   = 1   # Remove X instances
+
+  ###########################################################################
+  # Security Constants
+  ###########################################################################
+
+  # TLS/SSL Versions
+  min_tls_version = "TLS1_2"  # Minimum TLS version allowed
+
+  # Password Requirements
+  password_min_length = 12
+
+  ###########################################################################
+  # TODO: Add project-specific constants
+  ###########################################################################
+
+  # Example:
+  # api_rate_limit_requests_per_minute = 1000
+  # session_timeout_minutes = 30
+  # max_upload_size_mb = 100
+}
