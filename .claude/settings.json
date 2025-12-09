@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(terraform:*)",
+      "Bash(terraform)",
+      "Bash(aws:*)",
+      "Bash(python:*)",
+      "Bash(tflint:*)",
+      "Bash(checkov:*)",
+      "Bash(infracost:*)",
+      "Bash(terraform-docs:*)",
+      "Read",
+      "Glob",
+      "Grep"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(terraform destroy --auto-approve)",
+      "Write(*.tfstate)",
+      "Write(*.tfstate.backup)"
+    ]
+  }
+}

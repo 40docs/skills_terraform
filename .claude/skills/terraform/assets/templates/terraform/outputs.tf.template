@@ -1,0 +1,142 @@
+###############################################################################
+# {{PROJECT_NAME}} - Outputs
+# Cloud Provider: {{CLOUD_PROVIDER_UPPER}}
+###############################################################################
+
+# Organize outputs by logical category with clear section headers
+# Mark sensitive outputs appropriately
+# Provide helpful descriptions
+
+###############################################################################
+# Resource Groups / Projects
+###############################################################################
+
+# TODO: Add resource group/project outputs
+# Example:
+# output "resource_group_name" {
+#   description = "Name of the resource group containing all resources"
+#   value       = azurerm_resource_group.rg.name
+# }
+
+###############################################################################
+# Network Resources
+###############################################################################
+
+# TODO: Add network outputs
+# Example:
+# output "virtual_network_id" {
+#   description = "Resource ID of the virtual network"
+#   value       = azurerm_virtual_network.vnet.id
+# }
+#
+# output "subnet_ids" {
+#   description = "Map of subnet names to resource IDs"
+#   value = {
+#     for key, subnet in azurerm_subnet.subnet :
+#     subnet.name => subnet.id
+#   }
+# }
+
+###############################################################################
+# Compute Resources
+###############################################################################
+
+# TODO: Add compute outputs
+# Example:
+# output "vm_private_ip_addresses" {
+#   description = "Private IP addresses of deployed VMs"
+#   value = {
+#     for key, vm in azurerm_linux_virtual_machine.vm :
+#     key => vm.private_ip_address
+#   }
+# }
+
+###############################################################################
+# Load Balancers / Application Gateways
+###############################################################################
+
+# TODO: Add load balancer outputs
+# Example:
+# output "load_balancer_public_ip" {
+#   description = "Public IP address of the load balancer"
+#   value       = azurerm_public_ip.lb_pip.ip_address
+# }
+
+###############################################################################
+# Database / Storage
+###############################################################################
+
+# TODO: Add database outputs
+# Example:
+# output "database_fqdn" {
+#   description = "Fully qualified domain name of the database server"
+#   value       = azurerm_postgresql_server.db.fqdn
+# }
+
+###############################################################################
+# Connection Information
+###############################################################################
+
+# TODO: Add connection information for deployed resources
+# Example:
+# output "ssh_commands" {
+#   description = "SSH commands to connect to VMs"
+#   value = {
+#     for key, vm in local.virtual_machines :
+#     key => "ssh ${var.admin_username}@${azurerm_public_ip.pip[key].ip_address}"
+#     if lookup(vm, "has_public_ip", false)
+#   }
+# }
+#
+# output "application_urls" {
+#   description = "URLs to access deployed applications"
+#   value = {
+#     web_app = "https://${azurerm_public_ip.app_pip.ip_address}"
+#     admin   = "https://${azurerm_public_ip.app_pip.ip_address}:8443"
+#   }
+# }
+
+###############################################################################
+# Sensitive Outputs
+###############################################################################
+
+# IMPORTANT: Always mark sensitive outputs with sensitive = true
+# Never expose passwords, connection strings, or API keys without this flag
+
+# TODO: Add sensitive outputs
+# Example:
+# output "database_connection_string" {
+#   description = "Database connection string with credentials"
+#   value       = "Server=${azurerm_postgresql_server.db.fqdn};Database=${var.database_name};Uid=${var.admin_username};Pwd=${var.admin_password};"
+#   sensitive   = true
+# }
+#
+# output "admin_password" {
+#   description = "Administrator password for VMs"
+#   value       = var.admin_password
+#   sensitive   = true
+# }
+
+###############################################################################
+# Deployment Summary
+###############################################################################
+
+# TODO: Add deployment summary
+# Example:
+# output "deployment_summary" {
+#   description = "Summary of deployed resources"
+#   value = {
+#     deployment_prefix    = var.deployment_prefix
+#     environment         = var.environment
+#     location            = var.location
+#     resource_count = {
+#       vms              = length(local.virtual_machines)
+#       subnets          = length(local.subnets)
+#       load_balancers   = length(local.load_balancers)
+#     }
+#     deployed_features = {
+#       monitoring     = var.enable_monitoring
+#       auto_scaling   = var.enable_autoscaling
+#     }
+#   }
+# }

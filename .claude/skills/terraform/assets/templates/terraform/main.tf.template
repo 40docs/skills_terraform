@@ -1,0 +1,17 @@
+#####################################################################
+# {{PROJECT_NAME}} - Main Configuration
+# Cloud Provider: {{CLOUD_PROVIDER_UPPER}}
+#####################################################################
+
+# This file demonstrates the locals-based configuration pattern
+# - Configuration (what to create) goes in locals_*.tf files
+# - Implementation (how to create) goes in resource_*.tf files
+
+# TODO: Implement your infrastructure resources here
+# Organize into:
+# - locals_constants.tf - Constants and magic numbers
+# - locals_common.tf - Common reusable attributes
+# - locals_network.tf - Network configurations
+# - locals_compute.tf - Compute configurations
+# - resource_*.tf - Resource implementations
+
